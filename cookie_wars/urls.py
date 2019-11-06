@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
+
+from .ascii_art import ascii_art
+
+def helloWorldView(request):
+    return HttpResponse(ascii_art)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', helloWorldView, name='home')
 ]

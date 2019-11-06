@@ -131,6 +131,14 @@ MEDIA_ROOT = ''
 
 DEFAULT_FILE_STORAGE = 'cookie_wars.settings.storage_backends.MediaStorage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_DEFAULT_ACL = 'public-read'
+
+AWS_STORAGE_BUCKET_NAME = 'static.startribune.com'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '%s' % AWS_STORAGE_BUCKET_NAME
+AWS_LOCATION = 'news/projects/all/20191106-cookie-wars'
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 try:
     from .local_settings import *

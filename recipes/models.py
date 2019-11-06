@@ -23,11 +23,15 @@ class Recipe(models.Model):
     procedure = models.TextField(blank=True)
     notes = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class RecipePhoto(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='recipes')
     cutline = models.TextField(blank=True)
+    credit = models.CharField(max_length=255, blank=True)
     priority = models.IntegerField(default=2)
 
 
@@ -35,4 +39,5 @@ class BakerPhoto(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='bakers')
     cutline = models.TextField(blank=True)
+    credit = models.CharField(max_length=255, blank=True)
     priority = models.IntegerField(default=2)
