@@ -6,7 +6,7 @@ class Baker(models.Model):
     first_name = models.CharField(max_length=50)
     full_name_override = models.CharField(max_length=100, blank=True)
     hometown = models.CharField(max_length=100)
-    notes = models.TextField(blank=True)
+    # notes = models.TextField(blank=True)
 
     def __str__(self):
         if self.full_name_override != '':
@@ -22,6 +22,7 @@ class Recipe(models.Model):
     ingredients = models.TextField(blank=True)
     procedure = models.TextField(blank=True)
     notes = models.TextField(blank=True)
+    baker_bio_notes = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
