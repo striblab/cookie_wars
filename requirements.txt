@@ -1,2 +1,5 @@
 Django==2.2.7
-# psycopg2-binary
+psycopg2-binary
+Pillow
+boto3
+django-storages
