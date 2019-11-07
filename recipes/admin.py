@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Baker, Recipe, RecipePhoto, BakerPhoto
+from .models import Baker, RecipeFeature, Recipe, RecipePhoto, BakerPhoto
 
 
 class BakerAdmin(admin.ModelAdmin):
@@ -36,3 +36,4 @@ class RecipeAdmin(admin.ModelAdmin):
 
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Baker, BakerAdmin)
+admin.site.register(RecipeFeature)

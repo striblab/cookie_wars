@@ -14,9 +14,25 @@ class Baker(models.Model):
         return '{} {}'.format(self.first_name, self.last_name)
 
 
+class RecipeFeature(models.Model):
+    name = models.CharField(max_length=25)
+    sort_priority = models.IntegerField(default=2)
+
+    def __str__(self):
+        return self.name
+
+COOKIE_TYPE_CHOICES = (
+    ("Ro", "Rolled"),
+    ("B", "Bar"),
+    ("D", "Drop"),
+    ("Rf", "Refrigerator"),
+)
+
 class Recipe(models.Model):
     name = models.CharField(max_length=255)
     baker = models.ManyToManyField(Baker)
+    features = models.ManyToManyField(RecipeFeature)
+    cookie_type = models.CharField(max_length=4, choices=COOKIE_TYPE_CHOICES, blank=True)
     year = models.IntegerField()
     recipe_yield = models.CharField(max_length=255)
     ingredients = models.TextField(blank=True)
