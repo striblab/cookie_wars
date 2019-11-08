@@ -30,6 +30,7 @@ COOKIE_TYPE_CHOICES = (
 
 class Recipe(models.Model):
     name = models.CharField(max_length=255)
+    summary = models.CharField(max_length=255, blank=True)
     baker = models.ManyToManyField(Baker)
     features = models.ManyToManyField(RecipeFeature)
     cookie_type = models.CharField(max_length=4, choices=COOKIE_TYPE_CHOICES, blank=True)
