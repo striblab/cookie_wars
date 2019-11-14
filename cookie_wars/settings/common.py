@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'recipes.apps.RecipesConfig',
 
     'storages',
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',

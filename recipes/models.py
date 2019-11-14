@@ -1,3 +1,4 @@
+import re
 from django.db import models
 
 
@@ -44,9 +45,34 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def ingredients_clean(self):
+        # Let's find bullet listy things and make them <li>s
+        output = self.ingredients
+        section_heads = r'(For .*?:*)\r\n'
+        output = re.sub(section_heads, r'</ul>\n<div><strong>\1</strong></div>\n<ul>', output)
+
+        bullets_etc = r'((?:\r\n)+)(?:• )*'  # line breaks with optional bullets
+        output = re.sub(bullets_etc, r'</li>\n<li>', output)
+        output = re.sub(r'^', '<ul>\n<li>', output)  # Start every list with a <ul>
+        output = re.sub(r'<li>• ', r'<li>', output)  # Clean up first bullet if it's one of those
+        output = re.sub(r'$', r'</li>\n</ul>', output)  # Close the <li> and <ul> at the end
+        output = output.replace('<li></ul>', '</ul>')  # Clean up
+        output = output.replace('<ul></li>', '<ul>')  # Clean up
+        output = re.sub(r'^<ul>\n</ul>\n', '', output)  # But if you start with a header trim that <ul> and excess off
+
+        return output
+
+    @property
+    def thumbnail(self):
+        try:
+            return self.photos.first().image.url
+        except:
+            raise
+
 
 class RecipePhoto(models.Model):
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, related_name="photos", on_delete=models.CASCADE)
     image = models.ImageField(upload_to='recipes')
     cutline = models.TextField(blank=True)
     credit = models.CharField(max_length=255, blank=True)
