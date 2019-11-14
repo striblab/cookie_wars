@@ -64,6 +64,15 @@ class Recipe(models.Model):
         return output
 
     @property
+    def procedure_clean(self):
+        output = self.procedure
+        section_heads = r'(?:^|\r\n)([\w ]+?:)(?: |\r\n)'  # Any word-y things at the start of string or start of line followed by a : and then a space or line break
+        output = re.sub(section_heads, r'\r\n<strong>\1</strong> ', output)
+        output = re.sub(r'^\r\n', r'', output)
+        output = re.sub(r'(?:\r\n)+', r'</p>\n<p>', output)
+        return '<p>{}</p>'.format(output)
+
+    @property
     def thumbnail(self):
         try:
             return self.photos.first().image.url

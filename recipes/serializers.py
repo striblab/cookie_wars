@@ -28,4 +28,4 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ['id', 'name', 'summary', 'baker', 'features', 'cookie_type', 'year', 'recipe_yield', 'ingredients_clean', 'procedure', 'notes', 'baker_bio_notes', 'thumbnail']
+        fields = ['id', 'name', 'summary', 'baker', 'features', 'cookie_type', 'year', 'recipe_yield', 'ingredients_clean', 'procedure_clean', 'notes', 'baker_bio_notes', 'thumbnail']
