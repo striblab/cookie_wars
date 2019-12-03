@@ -13,6 +13,7 @@ class BakerInline(admin.StackedInline):
 
 
 class RecipePhotoInline(admin.StackedInline):
+    readonly_fields = ['image_sized',]
     model = RecipePhoto
     extra = 1
 
