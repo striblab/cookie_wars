@@ -74,7 +74,7 @@ class Recipe(models.Model):
         return output
 
     def clean_text(self, input):
-        section_heads = r'(?:^|\r\n)([\w ]+?:)(?: |\r\n)'  # Any word-y things at the start of string or start of line followed by a : and then a space or line break
+        section_heads = r'(?:^|\r\n)([\w ’\']+?:)(?: |\r\n)'  # Any word-y things at the start of string or start of line followed by a : and then a space or line break
         output = re.sub(section_heads, r'\r\n<strong>\1</strong> ', input)
         output = re.sub(r'^\r\n', r'', output)
         output = re.sub(r'(?:\r\n)+', r'</p>\n<p>', output)
