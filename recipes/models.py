@@ -93,6 +93,7 @@ class Recipe(models.Model):
         try:
             return self.photos.first().image_sized.url
         except:
+            # return ''
             raise
 
 
