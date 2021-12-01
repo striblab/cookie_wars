@@ -12,9 +12,9 @@ djangorestframework = "*"
 Django = "==2.2.7"
 Pillow = "*"
 django-stdimage = "*"
-awscli = "*"
+requests = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.9"
