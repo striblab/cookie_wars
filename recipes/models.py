@@ -93,9 +93,8 @@ class Recipe(models.Model):
         try:
             return self.photos.first().image_sized.url
         except:
-            # return ''
-            raise
-
+            # Return regular image if resized image is unavailable
+            return self.photos.first().image.url
 
 class RecipePhoto(models.Model):
     recipe = models.ForeignKey(Recipe, related_name="photos", on_delete=models.CASCADE)
