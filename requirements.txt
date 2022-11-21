@@ -1,7 +1,8 @@
 Django==2.2.7
-psycopg2-binary
+psycopg2-binary==2.8.6
 Pillow
 boto3
 django-storages
+django-stdimage
 gunicorn
 djangorestframework
